@@ -1,0 +1,18 @@
+.video-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  /* This centers the container horizontally */
+}
+
+.video-item {
+  margin: 40px;
+  /* Adjust the value as needed to add space between the videos */
+}
+
+#header {
+  color: #f94d53;
+  margin-left: 500px;
+}

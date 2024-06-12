@@ -1,0 +1,316 @@
+/* ManageCourses.css */
+
+/* Global Styles */
+* {
+    user-select: none;
+}
+
+body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+
+}
+
+/*************************************************/
+.LogOut-Btn {
+    --black: #000000;
+    --ch-black: #141414;
+    --eer-black: #1b1b1b;
+    --night-rider: #2e2e2e;
+    --white: #ffffff;
+    --af-white: #f3f3f3;
+    --ch-white: #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    z-index: 2;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--night-rider);
+}
+
+/* plus sign */
+.sign {
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    transition-duration: .3s;
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.sign svg {
+    width: 17px;
+}
+
+.sign svg path {
+    fill: var(--af-white);
+}
+
+/* text */
+.text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--af-white);
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+}
+
+/* hover effect on button width */
+.LogOut-Btn:hover {
+    width: 125px;
+    border-radius: 5px;
+    transition-duration: .3s;
+}
+
+.LogOut-Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 5px;
+}
+
+/* hover effect button's text */
+.LogOut-Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+}
+
+/* button click effect*/
+.LogOut-Btn:active {
+    transform: translate(2px, 2px);
+}
+
+/*************************************************/
+
+/* Header */
+.header {
+    /* position: absolute; */
+    width: 100%;
+    color: #000000;
+    font-weight: bold;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    text-align: center;
+    top: 50px;
+    margin: 40px 0;
+    font-size: 2.5rem;
+}
+
+.header-user {
+    position: absolute;
+    color: #000000;
+    font-weight: bold;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    /* text-align: center; */
+    top: 0;
+    margin: 10px;
+    font-size: 2.5rem;
+}
+
+.userdash {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vanta-canvas {
+    height: 100vh;
+    width: 100vw;
+}
+
+.welcome-typewriter {
+    /* position: absolute;
+    left: 20px;
+    top: 0; */
+    background: #00000071;
+    /* margin: 10px; */
+    padding: 10px;
+    font-size: 4em;
+    color: white;
+}
+
+.typewriter-messages {
+    /* position: absolute;
+    left: 20px;
+    top: 250px; */
+    background: #00000071;
+    /* margin: 10px; */
+    padding: 10px;
+    font-size: 3em;
+    color: white;
+}
+
+.typewriter-messages-cursor {
+    /* position: absolute;
+    left: 20px;
+    top: 250px; */
+    background: #00000071;
+    /* margin: 10px; */
+    padding: 10px;
+    font-size: 3em;
+    color: white;
+    animation: blink 0.7s infinite;
+}
+
+/* Styles for the cursor animation */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+/* Button Section */
+.button-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.button-section .add-course-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-section .add-course-button:hover {
+    background-color: #0056b3;
+}
+
+/* Video Cards */
+.video-cards {
+    position: relative;
+    top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.video-card {
+    margin: 15px;
+    width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: none;
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.video-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.video-card:active {
+    transform: scale(1);
+    box-shadow: none;
+}
+
+
+.video-card-body {
+    padding: 20px;
+    background-color: white;
+}
+
+.video-card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.video-card-text {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    margin-top: 15px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.button-group .btn {
+    margin: 0 5px;
+}
+
+.button-group .view-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-group .view-btn:hover {
+    background-color: #218838;
+}
+
+
+
+.button-group .delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button-group .delete-btn:hover {
+    background-color: #c82333;
+}
