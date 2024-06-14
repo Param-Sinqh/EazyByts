@@ -158,6 +158,7 @@ const ManageCourses = () => {
                             deleteSpeed: 30,
                             autoStart: true,
                             loop: true,
+                            // pause: 5000,
                             wrapperClassName: "typewriter-messages",
                             cursorClassName: "typewriter-messages-cursor"
                         }}

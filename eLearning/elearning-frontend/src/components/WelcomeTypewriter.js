@@ -12,7 +12,7 @@ const WelcomeTypewriter = ({ username }) => {
         });
 
         typewriter
-            .pauseFor(1000)
+            // .pauseFor(1000)
             .typeString(`Welcome ${username}! `)
             .start();
     }, [username]);
