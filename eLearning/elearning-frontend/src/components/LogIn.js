@@ -87,7 +87,11 @@ const LogIn = () => {
         if (data.role === 'admin') {
           navigate('/courses', { state: { role: 'admin' } });
         } else {
-          navigate('/courses', { state: { role: data.role, username: data.username } });
+          if (data.courseId == null || data.courseId == "") {
+            navigate('/courses', { state: { role: data.role, username: data.username, userid: userid } });
+          } else {
+            navigate(`/coursecontentview/${data.courseId}`, { state: { role: data.role, username: data.username, userid: userid } });
+          }
         }
       } else {
         setFailedMessage('Incorrect UserID or Password');

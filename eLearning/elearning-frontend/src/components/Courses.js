@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Card, CardBody, CardSubtitle, CardText, Button, Container } from 'reactstrap';
+import { Card, CardBody, CardSubtitle, CardText, Button, Container, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { confirmAlert } from 'react-confirm-alert'; // Import the confirm alert
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import the CSS for react-confirm-alert
@@ -9,15 +9,20 @@ import * as THREE from 'three';
 import GLOBE from 'vanta/dist/vanta.globe.min';
 import Typewriter from 'typewriter-effect';
 import WelcomeTypewriter from './WelcomeTypewriter';
+import '../components/css/ViewCourseModal.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'; // Import specific icons as needed
 
 const ManageCourses = () => {
     const [videos, setVideos] = useState([]);
-    const [courses, setCourses] = useState([]);
-    const [newCourse, setNewCourse] = useState({ coursename: '', courseauthor: '', url: '' });
+    const [selectedCourse, setSelectedCourse] = useState(null); // State for the selected course
     const location = useLocation();
     const role = location.state?.role || 'user';
     const username = location.state?.username;
+    const userid = location.state?.userid;
     const vantaRef = useRef(null);
+    const videoCardsRef = useRef(null);
+    const coursesListRef = useRef(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,40 +48,19 @@ const ManageCourses = () => {
     }, [vantaRef.current]);
 
     useEffect(() => {
-        const fetchVideos = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/course/getall');
-                if (Array.isArray(response.data)) {
-                    setVideos(response.data);
-                } else {
-                    console.error('Expected an array but got:', response.data);
-                }
-            } catch (error) {
-                console.error('Error fetching videos:', error);
-            }
-        };
-
         fetchVideos();
     }, []);
 
-    const fetchCourses = async () => {
+    const fetchVideos = async () => {
         try {
             const response = await axios.get('http://localhost:8080/course/getall');
-            setCourses(response.data);
+            if (Array.isArray(response.data)) {
+                setVideos(response.data);
+            } else {
+                console.error('Expected an array but got:', response.data);
+            }
         } catch (error) {
-            console.error('Error fetching courses:', error);
-        }
-    };
-
-    const handleAddCourse = async () => {
-        try {
-            await axios.post('http://localhost:8080/course/addcourse', newCourse, {
-                params: { role }
-            });
-            fetchCourses();
-            setNewCourse({ coursename: '', courseauthor: '', url: '' });
-        } catch (error) {
-            alert('Error adding course: ' + error.message);
+            console.error('Error fetching videos:', error);
         }
     };
 
@@ -85,7 +69,7 @@ const ManageCourses = () => {
             await axios.delete('http://localhost:8080/course/deletecourse', {
                 params: { courseId, role }
             });
-            fetchCourses();
+            fetchVideos(); // Re-fetch videos to update the list after deleting a course
         } catch (error) {
             alert('Error deleting course: ' + error.message);
         }
@@ -110,6 +94,48 @@ const ManageCourses = () => {
         });
     };
 
+    const handleCourseClick = (course) => {
+        setSelectedCourse(course);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedCourse(null);
+    };
+
+    // const handleStartCourse = () => {
+    //     if (selectedCourse) {
+    //         navigate(`/coursecontentview/${selectedCourse.id}`, { state: { role, selectedCourse } });
+    //     }
+    // };
+
+    const handleStartCourse = async (e) => {
+        e.preventDefault();
+    
+        if (selectedCourse) {
+            try {
+                const response = await axios.post('http://localhost:8080/user/updateCourse', {
+                    userId: userid, 
+                    courseId: selectedCourse.id 
+                });
+    
+                if (response.status === 200) {
+                    console.log('Course updated successfully:', response.data);
+                    navigate(`/coursecontentview/${selectedCourse.id}`, { state: { role, selectedCourse } });
+                }
+            } catch (error) {
+                console.error('Error updating course:', error);
+                alert('Error updating course: ' + error.message);
+            }
+        }
+    };
+    
+
+    const handleScrollToVideos = () => {
+        if (coursesListRef.current) {
+            coursesListRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div>
             <button className="LogOut-Btn" onClick={() => navigate('/', { state: { role: 'admin' } })}>
@@ -122,18 +148,24 @@ const ManageCourses = () => {
             </button>
 
             {role === 'admin' ? (
-                <h1 className="header" style={{ color: "#000000" }}>
-                    Admin Dashboard
-                </h1>
+                <>
+                    <h1 className="header" style={{ color: "#000000" }}>
+                        Admin Dashboard
+                    </h1>
+                    <div className="button-section">
+                        <Button className="add-course-button" onClick={() => navigate('/addcourse', { state: { role: 'admin' } })}>
+                            Add New Course
+                        </Button>
+                    </div>
+                </>
             ) : (
                 <div ref={vantaRef} className="userdash">
+
                     <h1 className="header-user" style={{ color: "#ffffff" }}>
                         StudyNest
                     </h1>
 
                     <WelcomeTypewriter username={username} />
-
-                    {/* reffer this site for TypeWriter information: https://www.npmjs.com/package/typewriter-effect?activeTab=readme#methods */}
 
                     <Typewriter
                         options={{
@@ -158,56 +190,77 @@ const ManageCourses = () => {
                             deleteSpeed: 30,
                             autoStart: true,
                             loop: true,
-                            // pause: 5000,
                             wrapperClassName: "typewriter-messages",
                             cursorClassName: "typewriter-messages-cursor"
                         }}
                         className="info-typewriter"
                     />
 
+                    <div onClick={handleScrollToVideos} className="scroll-button">
+                        Go to Courses
+                        <FontAwesomeIcon className='arrow' icon={faChevronDown} size="xl" color='white' />
+                    </div>
                 </div>
             )}
 
-            {role === 'admin' && (
-                <div className="button-section">
-                    <Button className="add-course-button" onClick={() => navigate('/addcourse', { state: { role: 'admin' } })}>
-                        Add New Course
-                    </Button>
-                </div>
-            )}
+            <div ref={coursesListRef} className='courses-header'>
+                <h1>Select One Course To Start</h1>
+            </div>
 
-            <div className="video-cards">
+            <div ref={videoCardsRef} className="video-cards">
                 {videos.map((video, index) => (
-                    <Card key={index} className="video-card" onClick={() => navigate(`/viewcourse/${video.id}`, { state: { role } })}>
+                    <Card key={index} className="video-card" onClick={() => handleCourseClick(video)}>
                         <CardBody className="video-card-body">
                             <CardSubtitle tag="h5" className="video-card-title">{video.coursename}</CardSubtitle>
                             <CardText className="video-card-text">{video.courseauthor}</CardText>
                             <Container className="video-container">
-                                <iframe
-                                    title={`Video ${index}`}
-                                    className="embed-responsive-item"
-                                    src={`https://www.youtube.com/embed/${extractVideoId(video.url)}`}
-                                    allowFullScreen
-                                ></iframe>
-                            </Container>
-                            <Container className="button-group">
-                                <Button className="view-btn" href={video.url} target="_blank" rel="noopener noreferrer">
-                                    View On Youtube
-                                </Button>
-                                {role === 'admin' && (
-                                    <Button className="delete-btn" onClick={() => confirmDelete(video.id)}>Delete</Button>
-                                    
+                                {video.url && (
+                                    <iframe
+                                        title={`Video ${index}`}
+                                        className="embed-responsive-item"
+                                        src={`https://www.youtube.com/embed/${extractVideoId(video.url)}`}
+                                        allowFullScreen
+                                    ></iframe>
                                 )}
                             </Container>
+                            {role === 'admin' && (
+                                <div className="button-group">
+                                    <Button color="danger" onClick={(e) => { e.stopPropagation(); confirmDelete(video.id); }}>
+                                        Delete
+                                    </Button>
+                                </div>
+                            )}
                         </CardBody>
                     </Card>
                 ))}
             </div>
+
+            {selectedCourse && (
+                <Modal isOpen={true} toggle={handleCloseModal}>
+                    <ModalHeader toggle={handleCloseModal}>{selectedCourse.coursename}</ModalHeader>
+                    <ModalBody>
+                        <p>Author: {selectedCourse.courseauthor}</p>
+                        <Container className="modal-video-container">
+                            <iframe
+                                title="Selected Video"
+                                className="modal-embed-responsive-item"
+                                src={`https://www.youtube.com/embed/${extractVideoId(selectedCourse.url)}`}
+                                allowFullScreen
+                            ></iframe>
+                        </Container>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={handleStartCourse}>Start Course</Button>
+                        <Button color="secondary" onClick={handleCloseModal}>Close</Button>
+                    </ModalFooter>
+                </Modal>
+            )}
         </div>
     );
 };
 
 const extractVideoId = (url) => {
+    if (!url) return '';
     const videoId = url.split('v=')[1];
     if (videoId) {
         const ampersandPosition = videoId.indexOf('&');
@@ -216,7 +269,7 @@ const extractVideoId = (url) => {
         }
         return videoId;
     }
-    return null;
+    return '';
 };
 
 export default ManageCourses;

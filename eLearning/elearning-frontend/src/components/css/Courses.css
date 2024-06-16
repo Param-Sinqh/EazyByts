@@ -136,6 +136,7 @@ body {
     width: 100vw;
 }
 
+
 .welcome-typewriter {
     /* position: absolute;
     left: 20px;
@@ -172,16 +173,79 @@ body {
 
 /* Styles for the cursor animation */
 @keyframes blink {
-    0% {
-        opacity: 1;
-    }
 
-    50% {
+    0%,
+    100% {
         opacity: 0;
     }
 
-    100% {
+    50% {
         opacity: 1;
+    }
+}
+
+@media (max-width: 1200px) {
+    .welcome-typewriter {
+        font-size: 3.2em;
+    }
+
+    .typewriter-messages {
+        font-size: 2.2em;
+    }
+
+    .typewriter-messages-cursor {
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 768px) {
+    .welcome-typewriter {
+        font-size: 2.2em;
+    }
+
+    .typewriter-messages {
+        font-size: 1.2em;
+    }
+
+    .typewriter-messages-cursor {
+        font-size: 1.2em;
+    }
+}
+
+.scroll-button {
+    position: absolute;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer
+}
+
+.scroll-button button {
+    background-color: transparent;
+    border: none;
+}
+
+.scroll-button button:hover {
+    background-color: transparent;
+
+}
+
+.scroll-button .arrow {
+    animation: float 2s ease infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
     }
 }
 
@@ -209,10 +273,19 @@ body {
     background-color: #0056b3;
 }
 
+.courses-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+    padding: 20px;
+
+}
+
 /* Video Cards */
 .video-cards {
     position: relative;
-    top: 100px;
+    /* top: 100px; */
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
