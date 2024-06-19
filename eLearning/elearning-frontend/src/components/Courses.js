@@ -110,17 +110,17 @@ const ManageCourses = () => {
 
     const handleStartCourse = async (e) => {
         e.preventDefault();
-    
+
         if (selectedCourse) {
             try {
                 const response = await axios.post('http://localhost:8080/user/updateCourse', {
-                    userId: userid, 
-                    courseId: selectedCourse.id 
+                    userId: userid,
+                    courseId: selectedCourse.id
                 });
-    
+
                 if (response.status === 200) {
                     console.log('Course updated successfully:', response.data);
-                    navigate(`/coursecontentview/${selectedCourse.id}`, { state: { role, selectedCourse } });
+                    navigate('/coursecontentview', { state: { role: role, username: username, userid: userid, courseId: selectedCourse.id } });
                 }
             } catch (error) {
                 console.error('Error updating course:', error);
@@ -128,7 +128,7 @@ const ManageCourses = () => {
             }
         }
     };
-    
+
 
     const handleScrollToVideos = () => {
         if (coursesListRef.current) {
@@ -157,104 +157,143 @@ const ManageCourses = () => {
                             Add New Course
                         </Button>
                     </div>
+
+                    <hr style={{ color: "#000000" }}></hr>
+
+                    <div ref={coursesListRef} className='courses-header' style={{ color: "#000000" }}>
+                        <h1>Available Courses</h1>
+                    </div>
+
+                    <div ref={videoCardsRef} className="video-cards" >
+                        {videos.map((video, index) => (
+                            <Card key={index} className="video-card" style={{ border: "none", backdropFilter: "none" }}>
+                                <CardBody className="video-card-body">
+                                    <CardSubtitle tag="h5" className="video-card-title">{video.coursename}</CardSubtitle>
+                                    <CardText className="video-card-text">{video.courseauthor}</CardText>
+                                    <Container className="video-container">
+                                        {video.url && (
+                                            <iframe
+                                                title={`Video ${index}`}
+                                                className="embed-responsive-item"
+                                                src={`https://www.youtube.com/embed/${extractVideoId(video.url)}`}
+                                                allowFullScreen
+                                            ></iframe>
+                                        )}
+                                    </Container>
+                                    {role === 'admin' && (
+                                        <div className="button-group">
+                                            <Button color="danger" onClick={(e) => { e.stopPropagation(); confirmDelete(video.id); }}>
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    )}
+                                </CardBody>
+                            </Card>
+                        ))}
+                    </div>
                 </>
             ) : (
-                <div ref={vantaRef} className="userdash">
+                <>
+                    <div ref={vantaRef} className="userdash">
 
-                    <h1 className="header-user" style={{ color: "#ffffff" }}>
-                        StudyNest
-                    </h1>
+                        <h1 className="header-user" style={{ color: "#ffffff" }}>
+                            StudyNest
+                        </h1>
 
-                    <WelcomeTypewriter username={username} />
+                        <WelcomeTypewriter username={username} />
 
-                    <Typewriter
-                        options={{
-                            strings: [
-                                "Unlock your potential with StudyNest!",
-                                "Embark on a journey of knowledge and growth.",
-                                "Ignite your curiosity with our curated courses.",
-                                "Transform your learning experience today.",
-                                "Explore a world of endless possibilities.",
-                                "Empower yourself through education.",
-                                "Discover new passions and skills.",
-                                "Expand your horizons with StudyNest.",
-                                "Turn dreams into achievements with us.",
-                                "Join a community of lifelong learners.",
-                                "Experience the joy of continuous learning.",
-                                "Fuel your ambition with our diverse courses.",
-                                "Every step you take brings you closer to success.",
-                                "Start your learning adventure with StudyNest!",
-                                "Let's shape a brighter future together."
-                            ],
-                            delay: 30,
-                            deleteSpeed: 30,
-                            autoStart: true,
-                            loop: true,
-                            wrapperClassName: "typewriter-messages",
-                            cursorClassName: "typewriter-messages-cursor"
-                        }}
-                        className="info-typewriter"
-                    />
+                        <Typewriter
+                            options={{
+                                strings: [
+                                    "Unlock your potential with StudyNest!",
+                                    "Embark on a journey of knowledge and growth.",
+                                    "Ignite your curiosity with our curated courses.",
+                                    "Transform your learning experience today.",
+                                    "Explore a world of endless possibilities.",
+                                    "Empower yourself through education.",
+                                    "Discover new passions and skills.",
+                                    "Expand your horizons with StudyNest.",
+                                    "Turn dreams into achievements with us.",
+                                    "Join a community of lifelong learners.",
+                                    "Experience the joy of continuous learning.",
+                                    "Fuel your ambition with our diverse courses.",
+                                    "Every step you take brings you closer to success.",
+                                    "Start your learning adventure with StudyNest!",
+                                    "Let's shape a brighter future together."
+                                ],
+                                delay: 30,
+                                deleteSpeed: 30,
+                                autoStart: true,
+                                loop: true,
+                                wrapperClassName: "typewriter-messages",
+                                cursorClassName: "typewriter-messages-cursor"
+                            }}
+                            className="info-typewriter"
+                        />
 
-                    <div onClick={handleScrollToVideos} className="scroll-button">
-                        Go to Courses
-                        <FontAwesomeIcon className='arrow' icon={faChevronDown} size="xl" color='white' />
+                        <div onClick={handleScrollToVideos} className="scroll-button">
+                            Go to Courses
+                            <FontAwesomeIcon className='arrow' icon={faChevronDown} size="xl" color='white' />
+                        </div>
+
+
                     </div>
-                </div>
-            )}
+                    <div ref={coursesListRef} className='courses-header'>
+                        <h1>Select One Course To Start</h1>
+                    </div>
 
-            <div ref={coursesListRef} className='courses-header'>
-                <h1>Select One Course To Start</h1>
-            </div>
+                    <div ref={videoCardsRef} className="video-cards">
+                        {videos.map((video, index) => (
+                            <Card key={index} className="video-card" onClick={() => handleCourseClick(video)}>
+                                <CardBody className="video-card-body">
+                                    <CardSubtitle tag="h5" className="video-card-title">{video.coursename}</CardSubtitle>
+                                    <CardText className="video-card-text">{video.courseauthor}</CardText>
+                                    <Container className="video-container">
+                                        {video.url && (
+                                            <iframe
+                                                title={`Video ${index}`}
+                                                className="embed-responsive-item"
+                                                src={`https://www.youtube.com/embed/${extractVideoId(video.url)}`}
+                                                allowFullScreen
+                                            ></iframe>
+                                        )}
+                                    </Container>
+                                    {role === 'admin' && (
+                                        <div className="button-group">
+                                            <Button color="danger" onClick={(e) => { e.stopPropagation(); confirmDelete(video.id); }}>
+                                                Delete
+                                            </Button>
+                                        </div>
+                                    )}
+                                </CardBody>
+                            </Card>
+                        ))}
+                    </div>
 
-            <div ref={videoCardsRef} className="video-cards">
-                {videos.map((video, index) => (
-                    <Card key={index} className="video-card" onClick={() => handleCourseClick(video)}>
-                        <CardBody className="video-card-body">
-                            <CardSubtitle tag="h5" className="video-card-title">{video.coursename}</CardSubtitle>
-                            <CardText className="video-card-text">{video.courseauthor}</CardText>
-                            <Container className="video-container">
-                                {video.url && (
+                    {selectedCourse && (
+                        <Modal isOpen={true} toggle={handleCloseModal}>
+                            <ModalHeader toggle={handleCloseModal}>{selectedCourse.coursename}</ModalHeader>
+                            <ModalBody>
+                                <p>Author: {selectedCourse.courseauthor}</p>
+                                <Container className="modal-video-container">
                                     <iframe
-                                        title={`Video ${index}`}
-                                        className="embed-responsive-item"
-                                        src={`https://www.youtube.com/embed/${extractVideoId(video.url)}`}
+                                        title="Selected Video"
+                                        className="modal-embed-responsive-item"
+                                        src={`https://www.youtube.com/embed/${extractVideoId(selectedCourse.url)}`}
                                         allowFullScreen
                                     ></iframe>
-                                )}
-                            </Container>
-                            {role === 'admin' && (
-                                <div className="button-group">
-                                    <Button color="danger" onClick={(e) => { e.stopPropagation(); confirmDelete(video.id); }}>
-                                        Delete
-                                    </Button>
-                                </div>
-                            )}
-                        </CardBody>
-                    </Card>
-                ))}
-            </div>
-
-            {selectedCourse && (
-                <Modal isOpen={true} toggle={handleCloseModal}>
-                    <ModalHeader toggle={handleCloseModal}>{selectedCourse.coursename}</ModalHeader>
-                    <ModalBody>
-                        <p>Author: {selectedCourse.courseauthor}</p>
-                        <Container className="modal-video-container">
-                            <iframe
-                                title="Selected Video"
-                                className="modal-embed-responsive-item"
-                                src={`https://www.youtube.com/embed/${extractVideoId(selectedCourse.url)}`}
-                                allowFullScreen
-                            ></iframe>
-                        </Container>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={handleStartCourse}>Start Course</Button>
-                        <Button color="secondary" onClick={handleCloseModal}>Close</Button>
-                    </ModalFooter>
-                </Modal>
+                                </Container>
+                            </ModalBody>
+                            <ModalFooter>
+                                <Button color="primary" onClick={handleStartCourse}>Start Course</Button>
+                                <Button color="secondary" onClick={handleCloseModal}>Close</Button>
+                            </ModalFooter>
+                        </Modal>
+                    )}
+                </>
             )}
+
+
         </div>
     );
 };

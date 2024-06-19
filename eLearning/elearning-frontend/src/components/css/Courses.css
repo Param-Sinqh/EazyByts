@@ -134,6 +134,7 @@ body {
 .vanta-canvas {
     height: 100vh;
     width: 100vw;
+    /* position: absolute !important; */
 }
 
 
@@ -274,12 +275,13 @@ body {
 }
 
 .courses-header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 30px;
     padding: 20px;
-
+    color: #ffffff;
 }
 
 /* Video Cards */
@@ -298,6 +300,9 @@ body {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: none;
+    backdrop-filter: blur(20px);
+    border: 2px inset white;
+    background-color: hsla(0, 0%, 100%, 0.5);
     transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -314,18 +319,19 @@ body {
 
 .video-card-body {
     padding: 20px;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .video-card-title {
     font-size: 1.5rem;
     font-weight: bold;
+    color: #000;
 }
 
 .video-card-text {
     margin-top: 10px;
     font-size: 1rem;
-    color: #6c757d;
+    color: #61fcd5;
 }
 
 .video-container {

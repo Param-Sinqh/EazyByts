@@ -84,26 +84,33 @@ const LogIn = () => {
         setSuccessMessage('Login successful');
         const data = await response.json(); // Parse response body as JSON
 
-        if (data.role === 'admin') {
-          navigate('/courses', { state: { role: 'admin' } });
-        } else {
-          if (data.courseId == null || data.courseId == "") {
-            navigate('/courses', { state: { role: data.role, username: data.username, userid: userid } });
+        // Check if data contains necessary properties
+        if (data && data.role) {
+          if (data.role === 'admin') {
+            navigate('/courses', { state: { role: 'admin' } });
           } else {
-            navigate(`/coursecontentview/${data.courseId}`, { state: { role: data.role, username: data.username, userid: userid } });
+            if (data.courseId === '' || data.courseId === null) {
+              navigate('/courses', { state: { role: data.role, username: data.username, userid: userid } });
+            } else {
+              navigate('/coursecontentview', { state: { role: data.role, username: data.username, userid: userid, courseId: data.courseId } });
+            }
           }
+        } else {
+          setFailedMessage('Role not found in response');
+          throw new Error('Role not found');
         }
       } else {
         setFailedMessage('Incorrect UserID or Password');
         throw new Error('Authentication failed');
       }
     } catch (error) {
-      if (error.message !== 'Authentication failed') {
+      if (error.message !== 'Authentication failed' && error.message !== 'Role not found') {
         setFailedMessage('Something went wrong... try again!');
       }
       console.error('Error:', error);
     }
   };
+
 
   return (
     <div ref={vantaRef} className="login-container">

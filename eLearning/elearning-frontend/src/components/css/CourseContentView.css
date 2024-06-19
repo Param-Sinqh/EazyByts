@@ -1,14 +1,23 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* color: white; */
+}
+
 .course-content-view {
+    background-color: hsl(245, 100%, 5%);
     display: flex;
 }
 
 .content-list {
     width: 20%;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: hsl(245, 100%, 5%);
 }
 
 .content-list h3 {
+    color: white;
     margin-bottom: 20px;
 }
 
@@ -19,23 +28,109 @@
 
 .content-list li {
     padding: 10px;
+    color: white;
     cursor: pointer;
 }
 
+.content-list li:hover {
+    background-color: #272448;
+}
+
 .content-list li.active {
-    font-weight: bold;
-    color: blue;
+
+    /* border: lightseagreen 2px solid; */
+    /* font-weight: bold; */
+    /* color: blue; */
+    animation: timer 2s ease infinite;
+}
+
+@keyframes timer {
+
+    0%,
+    100% {
+        background-color: lightblue;
+        color: black;
+    }
+
+    50% {
+        background-color: transparent;
+        color: white;
+    }
+}
+
+.content-list li.completed {
+    /* color: greenyellow; */
+    text-decoration: line-through;
 }
 
 .content-details {
+    color: white;
+    display: flex;
+    flex-direction: column;
     width: 80%;
     padding: 20px;
+}
+
+.content-details .header{
+    
+    display: flex;
+    justify-content: space-between;
+    height: fit-content;
+    margin: 0;
+
+}
+
+.content-details .header h3{
+    color: white;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+.CourseContentView-btn {
+    font-size: 15px;
+    padding: 10px 20px;
+    background-color: cornflowerblue;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease .1s;
+}
+
+.CourseContentView-btn:hover {
+    background-color: rgb(19, 92, 228);
+    color: white;
+}
+
+.completion-message {
+    position:fixed;
+    top: 0px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(77, 77, 77, 0.477);
+    backdrop-filter: blur(30px);
+    color: white;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+
+canvas{
+    position: fixed !important;
+    width: 100%;
+    height: 100vh;
 }
 
 .video-container {
     margin: 20px 0;
     background: #000;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
     position: relative;
     height: 0;
 }
