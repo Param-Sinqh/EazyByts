@@ -89,12 +89,12 @@
 .CourseContentView-btn {
     font-size: 15px;
     padding: 10px 20px;
-    background-color: cornflowerblue;
+    background-color: rgb(144, 176, 235);
     color: black;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: all ease .1s;
+    transition: all ease .25s;
 }
 
 .CourseContentView-btn:hover {
