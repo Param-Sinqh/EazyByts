@@ -1,2 +1,4 @@
 eLearning/elearning-frontend/node_modules/.cache/default-development/15.pack filter=lfs diff=lfs merge=lfs -text
 eLearning/elearning-frontend/node_modules** filter=lfs diff=lfs merge=lfs -text
+eLearning/elearning-frontend/node_modules/.cache/default-development/6.pack filter=lfs diff=lfs merge=lfs -text
+*.pack filter=lfs diff=lfs merge=lfs -text

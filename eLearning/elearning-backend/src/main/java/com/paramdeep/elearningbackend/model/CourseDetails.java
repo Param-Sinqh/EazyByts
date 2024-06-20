@@ -1,9 +1,12 @@
 package com.paramdeep.elearningbackend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,19 +15,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "Courses")
 public class CourseDetails {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	private int id;
-
 	private String coursename;
-
 	private String courseauthor;
-
 	private String url;
+
+	@Lob
+	@Column(columnDefinition = "TEXT")
 	private String content;
+
+//	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	private List<Material> materials;
+//
+//	public List<Material> getMaterials() {
+//		return materials;
+//	}
+//
+//	public void setMaterials(List<Material> materials) {
+//		this.materials = materials;
+//	}
 
 	public String getContent() {
 		return content;

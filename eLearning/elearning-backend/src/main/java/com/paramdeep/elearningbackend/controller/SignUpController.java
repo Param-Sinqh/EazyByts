@@ -48,16 +48,30 @@ public class SignUpController {
 
 	@PostMapping("/logIn")
 	public ResponseEntity<Map<String, String>> login(@RequestBody User user) {
-		User validatedUser = validateLoginService.validateLogin(user);
+		try {
+			User validatedUser = validateLoginService.validateLogin(user);
 
-		if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
-			System.out.println("Login Successful :: " + user.getUserid());
-			Map<String, String> response = new HashMap<>();
-			response.put("role", validatedUser.getRole());
-			response.put("username", validatedUser.getUsername()); // Include username in the response
-			return new ResponseEntity<>(response, HttpStatus.OK); // Return role and username in JSON response
-		} else {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			if (validatedUser != null && validatedUser.getPassword().equals(user.getPassword())) {
+				System.out.println("Login Successful :: " + user.getUserid());
+				Map<String, String> response = new HashMap<>();
+
+				// Handle course ID possibly being null
+				String courseId = validatedUser.getCourse() != null ? String.valueOf(validatedUser.getCourse().getId())
+						: "";
+
+				response.put("courseId", courseId); // Convert int to string or empty string if null
+				response.put("role", validatedUser.getRole());
+				response.put("username", validatedUser.getUsername()); // Include username in the response
+
+				return new ResponseEntity<>(response, HttpStatus.OK); // Return role and username in JSON response
+			} else {
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+		} catch (Exception e) {
+			// Log the exception with appropriate logging framework (not using
+			// System.out.println in production)
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 

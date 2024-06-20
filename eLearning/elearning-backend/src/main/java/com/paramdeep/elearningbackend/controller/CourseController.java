@@ -19,7 +19,7 @@ import com.paramdeep.elearningbackend.model.CourseDetails;
 import com.paramdeep.elearningbackend.service.CourseService;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/course")
 public class CourseController {
 
@@ -81,10 +81,13 @@ public class CourseController {
 
 	@GetMapping("/getall")
 	public ResponseEntity<List<CourseDetails>> getAllCourses() {
+		System.out.println("Received request to get all courses");
 		List<CourseDetails> allCourseDetails = courseService.getAllCourseDetails();
 		if (allCourseDetails.isEmpty()) {
+			System.out.println("No courses found");
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} else {
+			System.out.println("Returning all courses");
 			return new ResponseEntity<>(allCourseDetails, HttpStatus.OK);
 		}
 	}

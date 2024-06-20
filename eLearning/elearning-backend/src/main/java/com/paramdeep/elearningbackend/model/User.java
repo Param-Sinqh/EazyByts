@@ -1,9 +1,13 @@
 package com.paramdeep.elearningbackend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,15 +16,38 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "Users")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@Column(nullable = false)
 	private String username;
-	private String userid;
+
+	@Column(nullable = false)
 	private String password;
+
+	@Column(nullable = false, unique = true)
+	private String userid;
+
+	@Column(nullable = false)
 	private String role;
+
+	@ManyToOne
+	@JoinColumn(name = "course_id", nullable = true)
+	private CourseDetails course;
+
+	// Getters and Setters
+
+	public CourseDetails getCourse() {
+		return course;
+	}
+
+	public void setCourse(CourseDetails course) {
+		this.course = course;
+	}
 
 	public String getRole() {
 		return role;
@@ -30,11 +57,11 @@ public class User {
 		this.role = role;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
