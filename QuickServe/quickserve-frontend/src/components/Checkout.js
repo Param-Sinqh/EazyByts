@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const Checkout = ({ cart, address, payment }) => {
     const handleCheckout = () => {
+        // Prepare order details as an object
         const orderDetails = {
-            items: cart,
-            address: address,
-            payment_details: payment
+            items: JSON.stringify(cart), // Convert cart array to JSON string
+            address: JSON.stringify(address), // Convert address object to JSON string
+            paymentDetails: JSON.stringify(payment) // Convert payment object to JSON string
         };
 
         axios.post('http://localhost:8080/quickserve/orders', orderDetails)

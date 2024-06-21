@@ -1,5 +1,6 @@
 package com.paramdeep.quickserve_backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,12 +14,17 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
+	
 	@Lob
+	@Column(length = 10000)
 	private String items; // JSON string
+	
 	@Lob
 	private String address; // JSON string
+	
 	@Lob
 	private String paymentDetails; // JSON string
+	
 	private String status;
 
 	

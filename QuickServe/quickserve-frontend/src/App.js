@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavigationBar from './components/Navbar/Navbar';
+// import NavigationBar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Cart from './components/Cart';
 import Address from './components/Address';
@@ -31,15 +32,16 @@ const App = () => {
   return (
     <Router>
       {/* <NavigationBar /> */}
-      {/* <div className="App"> */}
+      <Navbar />
+      <div className="App">
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Home addToCart={addToCart} />} />
           <Route path="/cart" element={<Cart cart={cart} updateCart={updateCart} />} />
           <Route path="/address" element={<Address setAddress={setAddress} />} />
           <Route path="/payment" element={<Payment setPaymentDetails={setPayment} />} />
           <Route path="/checkout" element={<Checkout cart={cart} address={address} payment={payment} />} />
         </Routes>
-      {/* </div> */}
+      </div>
     </Router>
   );
 };
