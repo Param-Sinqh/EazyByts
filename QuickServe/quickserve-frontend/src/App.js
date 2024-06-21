@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <Router>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       {/* <div className="App"> */}
         <Routes>
           <Route exact path="/" element={<Home />} />

@@ -2,7 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-size: 60%;
+    /* font-size: 60%; */
 }
 
 html {
@@ -29,11 +29,11 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
 }
 
 nav a {
-    font-size: 1.8rem;
+    font-size: 1rem;
     text-decoration: none;
 }
 
@@ -58,10 +58,6 @@ section#home {
     place-items: center;
 }
 
-h1 {
-    font-size: 4rem;
-}
-
 #ham-menu {
     display: none;
 }
@@ -71,9 +67,9 @@ nav ul.active {
 }
 
 @media only screen and (max-width: 991px) {
-    html {
+    /* html {
         font-size: 56.25%;
-    }
+    } */
 
     header {
         padding: 2.2rem 5rem;
@@ -81,9 +77,9 @@ nav ul.active {
 }
 
 @media only screen and (max-width: 767px) {
-    html {
+    /* html {
         font-size: 50%;
-    }
+    } */
 
     #ham-menu {
         display: block;
@@ -125,3 +121,4 @@ nav ul.active {
         height: calc(100vh - 65.18px);
     }
 }
+

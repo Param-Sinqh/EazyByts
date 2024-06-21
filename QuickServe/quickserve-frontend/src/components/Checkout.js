@@ -9,7 +9,7 @@ const Checkout = ({ cart, address, payment }) => {
             payment_details: payment
         };
 
-        axios.post('/api/orders', orderDetails)
+        axios.post('http://localhost:8080/quickserve/orders', orderDetails)
             .then(response => {
                 console.log('Order placed successfully:', response.data);
             })

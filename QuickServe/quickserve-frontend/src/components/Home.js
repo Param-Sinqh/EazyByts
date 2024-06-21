@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/Home.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 
 const Home = ({ addToCart }) => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
         // Fetch items from the backend
-        axios.get('/api/items')
+        axios.get('http://localhost:8080/quickserve/items')
             .then(response => setItems(response.data))
             .catch(error => console.error('Error fetching items:', error));
     }, []);
@@ -19,14 +21,25 @@ const Home = ({ addToCart }) => {
 
                 <h1>Menu</h1>
                 <input autoComplete='off' className='menu-searchbar' name="myInput" placeholder='search..' />
-                <div>
+                <div className='menu-item-list'>
                     {items.map(item => (
-                        <div key={item.item_id}>
-                            <h2>{item.name}</h2>
-                            <p>{item.description}</p>
-                            <p>${item.price}</p>
-                            <p>{item.veg ? 'Vegetarian' : 'Non-Vegetarian'}</p>
-                            <button onClick={() => addToCart(item)}>Add to Cart</button>
+                        <div className='menu-item' key={item.itemId}>
+                            <div className='name-avail-desc'>
+                                <div className='name-avail'>
+                                    <h2>{item.name}</h2>
+                                    {item.availability ? <p className='item-available'>Available</p> : <p className='item-notAvailable'>Not Available</p>}
+                                </div>
+                                <p className='item-desc'>{item.description}</p>
+                            </div>
+                            <div className='price-aoc'>
+                                <p>$ {item.price}</p>
+                                {item.availability &&
+                                    <button onClick={() => addToCart(item)}>
+                                        <FontAwesomeIcon className='aocIcon' icon={faCartPlus} size="xl" color='white' />
+                                    </button>
+                                }
+
+                            </div>
                         </div>
                     ))}
                 </div>

@@ -1,11 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+@font-face {
+    font-family: myFont;
+    /* src: url("../../fonts/RafflesBryantRegular.ttf"); */
+    /* src: url("../../fonts/Painting_With_Chocolate.ttf"); */
+    src: url("../../fonts/Baguette.ttf");
+    /* src: url("../../fonts/Wildest\ Grass\ Demo.otf"); */
+}
+
+
+body {
+    background-color: black;
+    color: white;
+}
+
 .home-container {
-    /* position: relative; */
+    position: relative;
+    top: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* top: 80px; */
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     /* background-color: aquamarine; */
 }
@@ -26,22 +43,104 @@
     padding: 10px;
     margin: 10px 50px;
     bottom: 0;
-
+    color: white;
     /* top: 300px; */
-    font-size: 1.7rem;
-    background-color: lightgrey;
+    font-size: 1rem;
+    background-color: black;
     border: none !important;
     border-radius: 10px;
-    outline: 1px solid gray;
+    outline: 1px solid white;
     transition: all ease .5s;
 }
 
 /* When the search menu is focused, move the menu-search-container up */
 .home-container .menu-search-container .menu-searchbar:focus {
-    outline: 5px solid lightpink;
+    outline: 1px solid coral;
 }
 
-.home-container .menu-search-container:focus-within {
-    /* bottom: 30vh; */
+/* .home-container .menu-search-container:focus-within {
     transform: translateY(-30vh);
+} */
+
+/* item menu */
+
+.home-container .menu-item-list {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    max-width: 768px;
+    padding: 10px;
+    /* border: 1px solid #ddd; */
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: left;
+    overflow: auto;
+}
+
+.home-container .menu-item {
+    position: relative;
+    /* margin-top: 20px; */
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home-container .menu-item .name-avail-desc {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-container .menu-item .name-avail {
+    position: relative;
+    display: flex;
+}
+
+.home-container .menu-item .name-avail h2 {
+    margin: 0;
+    font-size: 24px;
+    font-family: myFont;
+    color: coral;
+}
+
+.home-container .menu-item .name-avail p {
+    margin: 0 10px;
+    font-size: 0.7rem;
+}
+
+.home-container .menu-item .name-avail .item-notAvailable {
+    color: hsl(0, 100%, 36%);
+}
+
+.home-container .menu-item .name-avail .item-available {
+    color: hsl(114, 100%, 36%);
+}
+
+.home-container .menu-item .name-avail-desc .item-desc {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+.home-container .menu-item .price-aoc {
+    display: flex;
+    align-items: center;
+}
+
+.home-container .menu-item .price-aoc p {
+    font-size: 1rem;
+}
+
+.home-container .menu-item .price-aoc button {
+    aspect-ratio: 1/1;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.home-container .menu-item .price-aoc button:hover {
+    background-color: #0056b3;
 }
