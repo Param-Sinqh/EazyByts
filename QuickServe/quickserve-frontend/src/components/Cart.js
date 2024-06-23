@@ -19,6 +19,7 @@ const Cart = ({ cart, updateCart }) => {
                             type="number"
                             value={item.quantity}
                             onChange={(e) => handleQuantityChange(item, e.target.value)}
+                            min="1"
                         />
                         <button onClick={() => handleQuantityChange(item, 0)}>Remove</button>
                     </div>

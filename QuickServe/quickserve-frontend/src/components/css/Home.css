@@ -1,21 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins');
-
-@font-face {
-    font-family: myFont;
-    /* src: url("../../fonts/RafflesBryantRegular.ttf"); */
-    /* src: url("../../fonts/Painting_With_Chocolate.ttf"); */
-    src: url("../../fonts/Baguette.ttf");
-    /* src: url("../../fonts/Wildest\ Grass\ Demo.otf"); */
-}
-
-
-body {
-    color: white;
-}
-
 .home-container {
     position: fixed;
-    /* top: 150px; */
+    padding-top: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,10 +9,14 @@ body {
     height: 100vh;
     width: 100%;
 
-    background-image: url("../../images/hero-slider-3.jpg");
+
     background-repeat: no-repeat;
     background-size: cover;
     overflow: auto;
+}
+
+.home-container::-webkit-scrollbar {
+    display: none;
 }
 
 .home-container .menu-search-container {
@@ -37,6 +26,11 @@ body {
     flex-direction: column;
     align-items: center;
     transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
+}
+
+.home-container .menu-search-container h1 {
+    font-family: myFont;
+    font-size: 5rem;
 }
 
 .home-container .menu-search-container .menu-searchbar {
@@ -78,8 +72,6 @@ body {
     margin-bottom: 10px;
     border-radius: 4px;
     text-align: left;
-
-    /* overflow: auto; */
 }
 
 .home-container .menu-item {
@@ -108,17 +100,19 @@ body {
     color: coral;
 }
 
-.home-container .menu-item .name-avail p {
+.home-container .menu-item .name-avail .dietIcon {
+    aspect-ratio: 1/1;
+    height: 18px;
     margin: 0 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: aqua;
+    /* background-image: url("../../icons/VEG_Icon.svg"); */
+}
+
+.home-container .menu-item .name-avail p {
+    /* margin: 0 10px; */
     font-size: 0.7rem;
-}
-
-.home-container .menu-item .name-avail .item-notAvailable {
-    color: hsl(0, 100%, 36%);
-}
-
-.home-container .menu-item .name-avail .item-available {
-    color: hsl(114, 100%, 36%);
 }
 
 .home-container .menu-item .name-avail-desc .item-desc {
@@ -137,6 +131,7 @@ body {
 }
 
 .home-container .menu-item .price-atc button {
+    height: 42px;
     aspect-ratio: 1/1;
     background-color: transparent;
     font-size: 1.2rem;

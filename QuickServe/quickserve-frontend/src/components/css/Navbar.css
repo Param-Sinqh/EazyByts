@@ -5,6 +5,9 @@
 }
 
 nav {
+    z-index: 999;
+    position: fixed;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,7 +35,7 @@ nav ul li a {
 
 nav ul li a:hover {
     text-decoration: none;
-    color: rgb(233, 151, 121);
+    color: white;
 }
 
 nav ul li .cartCount {
@@ -55,4 +58,5 @@ nav ul li .cartCount p{
     font-size: 0.73rem;
     font-weight: 630;
     color: black;
+    user-select: none;
 }

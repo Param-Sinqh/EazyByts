@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+@font-face {
+    font-family: myFont;
+    /* src: url("../../fonts/RafflesBryantRegular.ttf"); */
+    /* src: url("../../fonts/Painting_With_Chocolate.ttf"); */
+    src: url("../../fonts/Baguette.ttf");
+    /* src: url("../../fonts/Wildest\ Grass\ Demo.otf"); */
+}
+
+.App {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(to bottom, black, transparent);
+    overflow: auto;
+    /* Ensure the content is scrollable */
+}
+
+body {
+    color: white;
+    background-image: url("../../images/hero-slider-3.jpg");
+    background-repeat: no-repeat;
+    background-position-x: 50%;
+    /* background-size: cover; */
+    overflow: hidden;
+    /* Hide scrollbar but allow scrolling */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
+
+html {
+    overflow: hidden;
+    /* Hide scrollbar but allow scrolling */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
+}
