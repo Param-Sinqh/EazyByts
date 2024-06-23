@@ -29,11 +29,11 @@ const Home = ({ addToCart }) => {
                                 </div>
                                 <p className='item-desc'>{item.description}</p>
                             </div>
-                            <div className='price-aoc'>
+                            <div className='price-atc'>
                                 <p>${item.price}</p>
                                 {item.availability &&
                                     <button onClick={() => addToCart(item)}>
-                                        <FontAwesomeIcon className='aocIcon' icon={faCartPlus} size="xl" color='white' />
+                                        <FontAwesomeIcon className='atcIcon' icon={faCartPlus}/>
                                     </button>
                                 }
                             </div>
