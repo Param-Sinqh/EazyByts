@@ -1,0 +1,165 @@
+.cartPage {
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    top: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-container {
+    width: 80%;
+    margin: 0 auto;
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.clear-cart {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    text-align: right;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.cart-item-image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    margin-left: 20px;
+}
+
+.cart-item-details p {
+    margin: 5px 0;
+}
+
+.cart-item-details .name-diet {
+    position: relative;
+    display: flex;
+}
+
+
+.cart-item-details .name-diet h2 {
+    margin: 0;
+    font-size: 24px;
+    font-family: myFont;
+    color: coral;
+}
+
+.cart-item-details .name-diet .diet-stamp{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 10px;
+}
+
+.cart-item-details .name-diet .diet-stamp .dietIcon {
+    aspect-ratio: 1/1;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: aqua;
+    /* background-image: url("../../icons/VEG_Icon.svg"); */
+}
+
+.cart-item-details .name-diet .diet-stamp p {
+    font-size: 0.7rem;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-item-quantity button {
+    background: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cart-item-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.save-for-later,
+.remove-item {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.cart-summary h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.cart-summary p {
+    font-size: 16px;
+    margin: 0;
+}
+
+.checkout-button {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.checkout-button:hover {
+    background: #0056b3;
+}
