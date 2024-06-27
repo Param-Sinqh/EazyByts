@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './css/OrderTracking.css';
 import { useLocation } from 'react-router-dom';
+import orderPlaced from '../icons/orderPlaced.svg'
+import orderProcessing from '../icons/orderProcessing.svg'
+import orderShipped from '../icons/orderShipped.svg'
+import orderDelivered from '../icons/orderDelivered.svg'
 
 const OrderTracking = () => {
     const [status, setStatus] = useState();
@@ -77,25 +81,33 @@ const OrderTracking = () => {
                 {status && (
                     <div className="order-tracking" style={{ display: 'flex' }}>
                         <div className={`step ${getStatusClass(1)}`}>
-                            <div className="circle"></div>
+                            <div className="circle">
+                                <img src={orderPlaced}></img>
+                            </div>
                             <p>Order Placed</p>
                         </div>
                         <progress className={`progress ${getStatusClass(1)}`} id="progress-bar-1" value={status > 1 ? 100 : 0} max="100"></progress>
 
                         <div className={`step ${getStatusClass(2)}`}>
-                            <div className="circle"></div>
+                            <div className="circle">
+                            <img src={orderProcessing}></img>
+                            </div>
                             <p>Processing</p>
                         </div>
                         <progress className={`progress ${getStatusClass(2)}`} id="progress-bar-2" value={status > 2 ? 100 : 0} max="100"></progress>
 
                         <div className={`step ${getStatusClass(3)}`}>
-                            <div className="circle"></div>
+                            <div className="circle">
+                            <img src={orderShipped}></img>
+                            </div>
                             <p>Shipped</p>
                         </div>
                         <progress className={`progress ${getStatusClass(3)}`} id="progress-bar-3" value={status > 3 ? 100 : 0} max="100"></progress>
 
                         <div className={`step ${getStatusClass(4)}`}>
-                            <div className="circle"></div>
+                            <div className="circle">
+                            <img src={orderDelivered}></img>
+                            </div>
                             <p>Delivered</p>
                         </div>
                     </div>

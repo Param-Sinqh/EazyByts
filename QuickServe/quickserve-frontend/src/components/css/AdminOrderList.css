@@ -1,8 +1,8 @@
 .admin_OL-page {
-    position: fixed;
+    position: absolute;
     width: 100%;
     height: 100vh;
-    background: black;
+    /* background: black; */
 }
 
 .admin_OL-container {

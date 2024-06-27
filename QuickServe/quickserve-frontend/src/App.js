@@ -18,14 +18,22 @@ import AdminLogin from './components/AdminLogin';
 import AdminOrderList from './components/AdminOrderList';
 import AddNewItem from './components/AddNewItem';
 
+import PreloadImages from './components/PreloadImages';
+
+import heroSlider1 from './images/hero-slider-1.jpg';
+import heroSlider2 from './images/hero-slider-2.jpg';
+import heroSlider3 from './images/hero-slider-3.jpg';
+
 library.add(fas);
 
 const App = () => {
   const [cart, setCart] = useState([]);
   const [address, setAddress] = useState({});
   const [payment, setPayment] = useState({});
+  const [bgImageIndex, setBgImageIndex] = useState(0);
 
-  // Load data from local storage
+  const images = [heroSlider1, heroSlider2, heroSlider3];
+
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart'));
     const storedAddress = JSON.parse(localStorage.getItem('address'));
@@ -36,12 +44,24 @@ const App = () => {
     if (storedPayment) setPayment(storedPayment);
   }, []);
 
-  // Save data to local storage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
     localStorage.setItem('address', JSON.stringify(address));
     localStorage.setItem('payment', JSON.stringify(payment));
   }, [cart, address, payment]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setBgImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, [images.length]);
+
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(${images[bgImageIndex]})`;
+    document.body.style.transition = 'background-image 0.5s ease-in-out';
+  }, [bgImageIndex, images]);
 
   const addToCart = (item) => {
     setCart((prevCart) => {
@@ -78,6 +98,7 @@ const App = () => {
   return (
     <Router>
       <Navbar cart={cart} />
+      <PreloadImages images={images} />
       <div className="App">
         <Routes>
           <Route exact path='/' element={<Home />} />
@@ -92,7 +113,6 @@ const App = () => {
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/orders" element={<AdminOrderList />} />
           <Route path="/add-item" element={<AddNewItem />} />
-
         </Routes>
       </div>
     </Router>

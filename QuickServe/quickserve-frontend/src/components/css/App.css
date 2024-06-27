@@ -17,16 +17,12 @@
     /* Ensure the content is scrollable */
 }
 
-.App::-webkit-scrollbar{
+.App::-webkit-scrollbar {
     display: none;
 }
 
 body {
     color: white;
-    background-image: url("../../images/hero-slider-3.jpg");
-    background-repeat: no-repeat;
-    background-position-x: 50%;
-    /* background-size: cover; */
     overflow: hidden;
     /* Hide scrollbar but allow scrolling */
     -ms-overflow-style: none;
