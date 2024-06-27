@@ -1,0 +1,75 @@
+.admin-page{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+}
+
+.login-form{
+    position: relative;
+    width: 400px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid coral;
+    border-radius: 20px;
+    background: transparent;
+    gap: 10px;
+}
+
+.login-form h2{
+    margin-bottom: 30px;
+}
+
+.login-form input{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 2px;
+    outline: none !important;
+}
+
+.login-form input:focus-visible{
+    border: 2px solid coral;
+}
+
+.login-form button{
+    position: relative;
+    width: 100%;
+    padding: 10px;
+    background: coral;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    margin: 20px 2px;
+    outline: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.25s;
+}
+
+.login-form button:hover{
+    background: black;
+    outline: 2px solid coral;
+    color: coral;
+    letter-spacing: 2rem;
+}
+
+.login-form button:active{
+    background: coral;
+    color: black;
+    outline: none;
+    /* letter-spacing: 0; */
+}

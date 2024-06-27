@@ -17,6 +17,10 @@
     /* Ensure the content is scrollable */
 }
 
+.App::-webkit-scrollbar{
+    display: none;
+}
+
 body {
     color: white;
     background-image: url("../../images/hero-slider-3.jpg");

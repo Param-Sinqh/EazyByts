@@ -1,25 +1,23 @@
-.home-container {
+.menu-container {
     position: fixed;
-    padding-top: 40vh;
-    display: flex;
+    padding-top: 20vh;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* top: 80px; */
     height: 100vh;
     width: 100%;
-
-
     background-repeat: no-repeat;
     background-size: cover;
     overflow: auto;
 }
 
-.home-container::-webkit-scrollbar {
+.menu-container::-webkit-scrollbar {
     display: none;
 }
 
-.home-container .menu-search-container {
+.menu-container .menu-search-container {
     position: relative;
     width: 100%;
     display: flex;
@@ -28,12 +26,12 @@
     transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
 }
 
-.home-container .menu-search-container h1 {
+.menu-container .menu-search-container h1 {
     font-family: myFont;
     font-size: 5rem;
 }
 
-.home-container .menu-search-container .menu-searchbar {
+.menu-container .menu-search-container .menu-searchbar {
     position: relative;
     width: -webkit-fill-available;
     max-width: 768px;
@@ -47,21 +45,21 @@
     border: none !important;
     border-radius: 20px;
     outline: 1px solid white;
-    transition: all ease .5s;
+
 }
 
 /* When the search menu is focused, move the menu-search-container up */
-.home-container .menu-search-container .menu-searchbar:focus {
+.menu-container .menu-search-container .menu-searchbar:focus {
     outline: 1px solid coral;
 }
 
-/* .home-container .menu-search-container:focus-within {
+/* .menu-container .menu-search-container:focus-within {
     transform: translateY(-30vh);
 } */
 
 /* item menu */
 
-.home-container .menu-item-list {
+.menu-container .menu-item-list {
     position: relative;
     width: 100%;
     height: fit-content;
@@ -74,7 +72,7 @@
     text-align: left;
 }
 
-.home-container .menu-item {
+.menu-container .menu-item {
     position: relative;
     /* margin-top: 20px; */
     padding: 10px;
@@ -82,25 +80,25 @@
     justify-content: space-between;
 }
 
-.home-container .menu-item .name-avail-desc {
+.menu-container .menu-item .name-avail-desc {
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
-.home-container .menu-item .name-avail {
+.menu-container .menu-item .name-avail {
     position: relative;
     display: flex;
 }
 
-.home-container .menu-item .name-avail h2 {
+.menu-container .menu-item .name-avail h2 {
     margin: 0;
     font-size: 24px;
     font-family: myFont;
     color: coral;
 }
 
-.home-container .menu-item .name-avail .dietIcon {
+.menu-container .menu-item .name-avail .dietIcon {
     aspect-ratio: 1/1;
     height: 18px;
     margin: 0 10px;
@@ -110,27 +108,27 @@
     /* background-image: url("../../icons/VEG_Icon.svg"); */
 }
 
-.home-container .menu-item .name-avail p {
+.menu-container .menu-item .name-avail p {
     /* margin: 0 10px; */
     font-size: 0.7rem;
 }
 
-.home-container .menu-item .name-avail-desc .item-desc {
+.menu-container .menu-item .name-avail-desc .item-desc {
     font-size: 1rem;
     margin: 5px 0;
 }
 
-.home-container .menu-item .price-atc {
+.menu-container .menu-item .price-atc {
     display: flex;
     align-items: center;
     padding: 10px;
 }
 
-.home-container .menu-item .price-atc p {
+.menu-container .menu-item .price-atc p {
     font-size: 1rem;
 }
 
-.home-container .menu-item .price-atc button {
+.menu-container .menu-item .price-atc button {
     height: 42px;
     aspect-ratio: 1/1;
     background-color: transparent;
@@ -143,6 +141,6 @@
     border-radius: 25%;
 }
 
-.home-container .menu-item .price-atc button:hover {
+.menu-container .menu-item .price-atc button:hover {
     outline: 1px solid coral;
 }

@@ -14,22 +14,21 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderId;
-	
+
 	@Lob
 	@Column(length = 10000)
 	private String items; // JSON string
-	
+
 	@Lob
 	private String address; // JSON string
-	
+
 	@Lob
 	private String paymentDetails; // JSON string
-	
-	private String status;
 
-	
+	private int status;
+
 	// Getters and Setters
-	
+
 	public Long getOrderId() {
 		return orderId;
 	}
@@ -62,11 +61,11 @@ public class Order {
 		this.paymentDetails = paymentDetails;
 	}
 
-	public String getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

@@ -1,0 +1,147 @@
+.order-tracking-page {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-tracking-container {
+    position: relative;
+    width: 70%;
+    height: 70vh;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-tracking-container .orderId-form{
+    position: absolute;
+    top: 40px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-tracking-container .orderId-form input {
+    position: relative;
+    width: 100%;
+    background: transparent;
+    color: white;
+    text-align: center;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.order-tracking-container .orderId-form button{
+    padding: 10px;
+    background: black;
+    color: coral;
+    border: 2px solid coral;
+    border-radius: 20px;
+}
+
+.order-tracking-container .orderId-form button:hover{
+    background: coral;
+    color: black;
+}
+
+.order-tracking-container .orderId-form button:active{
+    scale: 0.95;
+}
+
+.order-tracking {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* position: relative; */
+    flex: 1 1;
+    width: 50px;
+}
+
+
+.step .circle {
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    /* height: 30px; */
+    border-radius: 50%;
+    background-color: gray;
+    margin: 0 10px;
+    /* border: 5px solid black; */
+}
+
+
+.step.active .circle {
+    background-color: coral;
+}
+
+.progress {
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+    position: relative;
+    /* top: -15px; */
+}
+
+.progress::-webkit-progress-bar {
+    background-color: transparent;
+}
+
+.progress::-webkit-progress-value {
+    background-color: transparent;
+    transition: none;
+}
+
+.progress.active::-webkit-progress-value {
+    background-color: coral;
+}
+
+.progress.animate::-webkit-progress-value {
+    transition: width 1.5s;
+}
+
+.progress::-moz-progress-bar {
+    background-color: gray;
+    transition: none;
+}
+
+.progress.active::-moz-progress-bar {
+    background-color: coral;
+}
+
+.progress.animate::-moz-progress-bar {
+    transition: width 1.5s;
+}
+
+.step p {
+    width: max-content;
+    bottom: 0;
+    position: absolute;
+    margin: 0;
+    font-size: 14px;
+    color: gray;
+}
+
+.step.active p {
+    color: coral;
+}

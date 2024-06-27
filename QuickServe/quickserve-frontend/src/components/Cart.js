@@ -6,7 +6,7 @@ import emptyCart from '../images/emptyCart.png';
 
 const Cart = ({ cart, updateCart, clearCart }) => {
     const handleQuantityChange = (item, quantity) => {
-        if (quantity >= 1) {
+        if (quantity >= 1 && quantity <= 5) {
             updateCart(item, quantity);
         }
     };
