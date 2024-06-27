@@ -89,7 +89,7 @@ const Navbar = ({ cart }) => {
                                 </li>
                                 <li>
                                     <Link to="/add-item">
-                                        <h6>Home</h6>
+                                        <h6>New Item</h6>
                                     </Link>
                                 </li>
                                 <li>

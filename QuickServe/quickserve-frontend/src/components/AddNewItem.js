@@ -1,5 +1,8 @@
+// AddNewItem.js
+
 import React, { useState } from 'react';
 import axios from 'axios';
+import './css/AddNewItem.css';
 
 const AddNewItem = () => {
     const [name, setName] = useState('');
@@ -8,7 +11,8 @@ const AddNewItem = () => {
     const [availability, setAvailability] = useState(true);
     const [veg, setVeg] = useState(true);
 
-    const handleAddItem = async () => {
+    const handleAddItem = async (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
         const newItem = {
             name,
             description,
@@ -31,43 +35,60 @@ const AddNewItem = () => {
     };
 
     return (
-        <div>
-            <h2>Add New Item</h2>
-            <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <input
-                type="text"
-                placeholder="Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            <input
-                type="text"
-                placeholder="Price"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-            />
-            <label>
-                Availability:
+        <div className='addItem-page'>
+            <form className='addItem-container' onSubmit={handleAddItem}>
+                <h2>Add New Item</h2>
                 <input
-                    type="checkbox"
-                    checked={availability}
-                    onChange={(e) => setAvailability(e.target.checked)}
+                    type="text"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
                 />
-            </label>
-            <label>
-                Veg:
                 <input
-                    type="checkbox"
-                    checked={veg}
-                    onChange={(e) => setVeg(e.target.checked)}
+                    type="text"
+                    placeholder="Description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
                 />
-            </label>
-            <button onClick={handleAddItem}>Add Item</button>
+                <input
+                    type="number"
+                    placeholder="Price"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    required
+                />
+                <div className="veg-nonveg-container">
+                    <label className="veg-label">
+                        Veg:
+                        <input
+                            type="radio"
+                            value={true}
+                            checked={veg === true}
+                            onChange={() => setVeg(true)}
+                        />
+                    </label>
+                    <label className="nonveg-label">
+                        Non-Veg:
+                        <input
+                            type="radio"
+                            value={false}
+                            checked={veg === false}
+                            onChange={() => setVeg(false)}
+                        />
+                    </label>
+                </div>
+                <label>
+                    Availability:
+                    <input
+                        type="checkbox"
+                        checked={availability}
+                        onChange={(e) => setAvailability(e.target.checked)}
+                    />
+                </label>
+                <button type='submit'>Add Item</button>
+            </form>
         </div>
     );
 };

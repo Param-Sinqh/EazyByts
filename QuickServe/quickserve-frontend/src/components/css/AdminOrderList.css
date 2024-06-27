@@ -1,0 +1,52 @@
+.admin_OL-page {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+}
+
+.admin_OL-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 100px;
+}
+
+.admin_OL-container table {
+    position: relative;
+    width: 70%;
+    top: 30px;
+    text-align: start;
+
+}
+
+.admin_OL-container table {
+    border-collapse: collapse;
+}
+
+.admin_OL-container table th {
+    padding: 20px 0;
+    text-align: start;
+}
+
+.admin_OL-container table tr {
+    border-bottom: 1px solid white;
+}
+
+.admin_OL-container select{
+    /* background: transparent; */
+    /* border: 1px solid coral; */
+    font-size: 0.9rem;
+    padding: 2px;
+    color: black;
+    border-radius: 5px;
+    outline: none !important;
+    border: none !important;
+}
+
+.admin_OL-container select option{
+    background: white;
+    
+}
