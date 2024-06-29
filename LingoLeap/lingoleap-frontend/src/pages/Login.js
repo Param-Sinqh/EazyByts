@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
         // Simple mock login
         if (username === 'user' && password === 'password') {
-            history.push('/dashboard');
+            navigate('/dashboard');
         } else {
             alert('Invalid username or password');
         }
